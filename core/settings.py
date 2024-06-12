@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from google.oauth2 import service_account
+# import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,8 +28,10 @@ SECRET_KEY = 'django-insecure-3jn+erlc0w9pk2fyb7%e$eaxx+x)5+5k(e5(w7j^pv60vr+b5e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["https://*.a.run.app","127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["https://*.a.run.app"]
+CORS_ALLOW_ALL_ORIGINS = True
+# izin biar bisa ngasih post ke host
 
 # Application definition
 
@@ -42,7 +47,7 @@ INSTALLED_APPS = [
     'django_filters',
 
     'backend_app',
-
+    'drf_yasg',
 
 ]
 
@@ -142,3 +147,39 @@ REST_FRAMEWORK = {
         'backend_app.middlewares.FirebaseAuthentication',
     ]
 }
+
+cred_path = os.path.join(os.path.dirname(
+    __file__), 'serviceAccountKey.json')
+
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(cred_path)
+
+# Define your Google Cloud Storage bucket name
+GS_BUCKET_NAME = 'pulih-capstone.appspot.com'
+
+# Configure the STORAGES setting
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+        "OPTIONS": {
+            "credentials": GS_CREDENTIALS,
+            "bucket_name": GS_BUCKET_NAME,
+        },
+    },
+    "staticfiles": {
+        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+        "OPTIONS": {
+            "credentials": GS_CREDENTIALS,
+            "bucket_name": GS_BUCKET_NAME,
+        },
+    },
+}
+
+# Set the URL for serving static files
+STATIC_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/static/'
+
+# Set the URL for serving media files
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
+
+
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
