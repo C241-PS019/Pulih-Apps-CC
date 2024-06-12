@@ -28,8 +28,10 @@ SECRET_KEY = 'django-insecure-3jn+erlc0w9pk2fyb7%e$eaxx+x)5+5k(e5(w7j^pv60vr+b5e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["https://*.a.run.app","127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["https://*.a.run.app"]
+CORS_ALLOW_ALL_ORIGINS = True
+# izin biar bisa ngasih post ke host
 
 # Application definition
 
@@ -181,4 +183,3 @@ MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
-CORS_ALLOW_ALL_ORIGINS = True
