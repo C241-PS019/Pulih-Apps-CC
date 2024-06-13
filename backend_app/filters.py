@@ -50,7 +50,7 @@ class PenggunaFilter(filters.FilterSet):
 
     class Meta:
         model = Pengguna
-        fields = ['akun', 'nama', 'nim', 'universitas', 'telepon']
+        fields = ['akun', 'nama', 'nama_panggilan', 'nim', 'universitas', 'telepon']
 
 
 class JurnalFilter(filters.FilterSet):
