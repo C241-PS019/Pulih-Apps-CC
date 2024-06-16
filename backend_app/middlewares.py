@@ -35,7 +35,6 @@ class FirebaseAuthentication(BaseAuthentication):
             )
 
             if created:
-                # Only create Pengguna if Akun is newly created
                 Pengguna.objects.create(
                     akun=akun,
                     nama=user_record.display_name or '',

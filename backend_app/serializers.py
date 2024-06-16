@@ -27,7 +27,8 @@ class JurnalPagiSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JurnalPagi
-        fields = ['id', 'pengguna_id', 'pengguna', 'q1', 'q2', 'q3', 'q4']
+        fields = ['id', 'pengguna_id', 'pengguna',
+                  "tanggal", 'q1', 'q2', 'q3', 'q4']
         read_only_fields = ['tanggal']
 
 
@@ -38,7 +39,7 @@ class JurnalSoreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JurnalSore
-        fields = ['id', 'pengguna_id', 'pengguna',
+        fields = ['id', 'pengguna_id', 'pengguna', "tanggal",
                   'q1', 'q2', 'q3', 'q4', 'q5']
         read_only_fields = ['tanggal']
 

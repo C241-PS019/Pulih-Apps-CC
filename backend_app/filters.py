@@ -30,7 +30,7 @@ class AkunFilter(filters.FilterSet):
 
 
 class PenggunaFilter(filters.FilterSet):
-    akun = filters.CharFilter(field_name='akun', lookup_expr='icontains')
+    akun_id = filters.CharFilter(field_name='akun__user_uid', lookup_expr='icontains')
     nama = filters.CharFilter(field_name='nama', lookup_expr='icontains')
     nim = filters.CharFilter(field_name='nim', lookup_expr='icontains')
     universitas = filters.CharFilter(
@@ -72,7 +72,7 @@ class JurnalSoreFilter(filters.FilterSet):
 
 
 class KonselorFilter(filters.FilterSet):
-    akun = filters.CharFilter(field_name='akun', lookup_expr='icontains')
+    akun_id = filters.CharFilter(field_name='akun__user_uid', lookup_expr='icontains')
     nama = filters.CharFilter(field_name='nama', lookup_expr='icontains')
     nim = filters.CharFilter(field_name='nim', lookup_expr='icontains')
     mitra = filters.CharFilter(field_name='mitra', lookup_expr='icontains')
