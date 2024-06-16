@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Akun, Pengguna, Konselor, Konseling, Jurnal
+from .models import Akun, Pengguna, Konselor, Konseling, JurnalPagi, JurnalSore
 
 # Model Serializer
 
@@ -20,14 +20,28 @@ class PenggunaSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class JurnalSerializer(serializers.ModelSerializer):
+class JurnalPagiSerializer(serializers.ModelSerializer):
     pengguna_id = serializers.PrimaryKeyRelatedField(
         source='pengguna', queryset=Pengguna.objects.all(), write_only=True)
     pengguna = PenggunaSerializer(read_only=True)
 
     class Meta:
-        model = Jurnal
-        fields = "__all__"
+        model = JurnalPagi
+        fields = ['id', 'pengguna_id', 'pengguna',
+                  "tanggal", 'q1', 'q2', 'q3', 'q4']
+        read_only_fields = ['tanggal']
+
+
+class JurnalSoreSerializer(serializers.ModelSerializer):
+    pengguna_id = serializers.PrimaryKeyRelatedField(
+        source='pengguna', queryset=Pengguna.objects.all(), write_only=True)
+    pengguna = PenggunaSerializer(read_only=True)
+
+    class Meta:
+        model = JurnalSore
+        fields = ['id', 'pengguna_id', 'pengguna', "tanggal",
+                  'q1', 'q2', 'q3', 'q4', 'q5']
+        read_only_fields = ['tanggal']
 
 
 class KonselorSerializer(serializers.ModelSerializer):
