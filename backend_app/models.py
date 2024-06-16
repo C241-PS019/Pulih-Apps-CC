@@ -22,6 +22,7 @@ class Akun(models.Model):
 class Pengguna(models.Model):
     akun = models.OneToOneField(Akun, on_delete=models.CASCADE)
     nama = models.CharField(max_length=100)
+    nama_panggilan = models.CharField(max_length=20)
     nim = models.CharField(max_length=20)
     universitas = models.CharField(max_length=50)
     telepon = models.CharField(max_length=20, null=True, blank=True)
@@ -59,8 +60,9 @@ class JurnalSore(JurnalBase):
 class Konselor(models.Model):
     akun = models.OneToOneField(Akun, on_delete=models.CASCADE)
     nama = models.CharField(max_length=100)
+    nama_panggilan = models.CharField(max_length=20)
     mitra = models.CharField(max_length=50)
-    telepon = models.CharField(max_length=20)
+    telepon = models.CharField(max_length=20, null=True, blank=True)
 
     def __str__(self):
         return self.nama
