@@ -1,6 +1,6 @@
 
 from django_filters import rest_framework as filters
-from .models import Akun, Pengguna, Jurnal, Konselor, Konseling
+from .models import Akun, Pengguna, JurnalPagi, JurnalSore, Konselor, Konseling
 
 
 class AkunFilter(filters.FilterSet):
@@ -13,7 +13,7 @@ class AkunFilter(filters.FilterSet):
     created = filters.CharFilter(field_name='created', lookup_expr='icontains')
     signed_in = filters.CharFilter(
         field_name='signed_in', lookup_expr='icontains')
-    
+
     created_gte = filters.DateTimeFilter(
         field_name='created', lookup_expr='gte')
     created_lte = filters.DateTimeFilter(
@@ -36,7 +36,7 @@ class PenggunaFilter(filters.FilterSet):
     universitas = filters.CharFilter(
         field_name='universitas', lookup_expr='icontains')
     telepon = filters.CharFilter(field_name='telepon', lookup_expr='icontains')
-    
+
     created_gte = filters.DateTimeFilter(
         field_name='akun__created', lookup_expr='gte')
     created_lte = filters.DateTimeFilter(
@@ -51,13 +51,24 @@ class PenggunaFilter(filters.FilterSet):
         fields = ['akun', 'nama', 'nim', 'universitas', 'telepon']
 
 
-class JurnalFilter(filters.FilterSet):
+class JurnalPagiFilter(filters.FilterSet):
     pengguna = filters.CharFilter(
         field_name='pengguna', lookup_expr='icontains')
+    tanggal = filters.DateFromToRangeFilter(field_name='tanggal')
 
     class Meta:
-        model = Jurnal
-        fields = ['pengguna']
+        model = JurnalPagi
+        fields = ['pengguna', 'tanggal']
+
+
+class JurnalSoreFilter(filters.FilterSet):
+    pengguna = filters.CharFilter(
+        field_name='pengguna', lookup_expr='icontains')
+    tanggal = filters.DateFromToRangeFilter(field_name='tanggal')
+
+    class Meta:
+        model = JurnalSore
+        fields = ['pengguna', 'tanggal']
 
 
 class KonselorFilter(filters.FilterSet):
@@ -66,7 +77,7 @@ class KonselorFilter(filters.FilterSet):
     nim = filters.CharFilter(field_name='nim', lookup_expr='icontains')
     mitra = filters.CharFilter(field_name='mitra', lookup_expr='icontains')
     telepon = filters.CharFilter(field_name='telepon', lookup_expr='icontains')
-    
+
     created_gte = filters.DateTimeFilter(
         field_name='akun__created', lookup_expr='gte')
     created_lte = filters.DateTimeFilter(
@@ -91,11 +102,13 @@ class KonselingFilter(filters.FilterSet):
         field_name='persetujuan', lookup_expr='icontains')
     pertemuan = filters.CharFilter(
         field_name='pertemuan', lookup_expr='icontains')
-    
+
     waktu_gte = filters.DateTimeFilter(field_name='waktu', lookup_expr='gte')
     waktu_lte = filters.DateTimeFilter(field_name='waktu', lookup_expr='lte')
-    pertemuan_gte = filters.DateTimeFilter(field_name='pertemuan', lookup_expr='gte')
-    pertemuan_lte = filters.DateTimeFilter(field_name='pertemuan', lookup_expr='lte')
+    pertemuan_gte = filters.DateTimeFilter(
+        field_name='pertemuan', lookup_expr='gte')
+    pertemuan_lte = filters.DateTimeFilter(
+        field_name='pertemuan', lookup_expr='lte')
 
     class Meta:
         model = Konseling

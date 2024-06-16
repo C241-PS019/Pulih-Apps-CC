@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.shortcuts import render
 from rest_framework import viewsets, filters
 from django_filters import rest_framework
-from .models import Akun, Pengguna, Jurnal, Konselor, Konseling
-from .serializers import AkunSerializer, PenggunaSerializer, JurnalSerializer, KonselorSerializer, KonselingSerializer
-from .filters import AkunFilter, PenggunaFilter, JurnalFilter, KonselorFilter, KonselingFilter
+from .models import Akun, Pengguna, JurnalPagi, JurnalSore, Konselor, Konseling
+from .serializers import AkunSerializer, PenggunaSerializer, JurnalPagiSerializer, JurnalSoreSerializer, KonselorSerializer, KonselingSerializer
+from .filters import AkunFilter, PenggunaFilter, JurnalPagiFilter, JurnalSoreFilter, KonselorFilter, KonselingFilter
 
 # Create your views here.
 
@@ -28,10 +28,18 @@ class PenggunaViewSet(viewsets.ModelViewSet):
                        rest_framework.DjangoFilterBackend]
 
 
-class JurnalViewSet(viewsets.ModelViewSet):
-    queryset = Jurnal.objects.all()
-    serializer_class = JurnalSerializer
-    filterset_class = JurnalFilter
+class JurnalPagiViewSet(viewsets.ModelViewSet):
+    queryset = JurnalPagi.objects.all()
+    serializer_class = JurnalPagiSerializer
+    filterset_class = JurnalPagiFilter
+
+    filter_backends = [filters.OrderingFilter,
+                       rest_framework.DjangoFilterBackend]
+    
+class JurnalSoreViewSet(viewsets.ModelViewSet):
+    queryset = JurnalSore.objects.all()
+    serializer_class = JurnalSoreSerializer
+    filterset_class = JurnalSoreFilter
 
     filter_backends = [filters.OrderingFilter,
                        rest_framework.DjangoFilterBackend]
