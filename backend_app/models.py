@@ -73,9 +73,9 @@ class Konselor(models.Model):
 
 class Konseling(models.Model):
     class Status(models.TextChoices):
-        BERHENTI = 'BR', 'Berhenti'
-        DISETUJUI = 'DS', 'Disetujui'
-        DITUNDA = 'DT', 'Ditunda'
+        disetujui = 'disetujui', 'disetujui'
+        selesai = 'selesai', 'selesai'
+        reschedule = 'reschedule', 'reschedule'
 
     pengguna = models.ForeignKey(Pengguna, on_delete=models.CASCADE)
     konselor = models.ForeignKey(Konselor, on_delete=models.CASCADE)
@@ -83,7 +83,7 @@ class Konseling(models.Model):
     persetujuan = models.CharField(max_length=50)
     pertemuan = models.CharField(max_length=50)
     status = models.CharField(
-        max_length=2, choices=Status.choices, default=Status.BERHENTI,)
+        max_length=10, choices=Status.choices)
 
     def __str__(self):
         return f"{self.pengguna.nama} -  {self.konselor.nama}"
