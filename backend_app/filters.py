@@ -55,23 +55,25 @@ class PenggunaFilter(filters.FilterSet):
 
 
 class JurnalPagiFilter(filters.FilterSet):
+    judul = filters.CharFilter(field_name='judul', lookup_expr='icontains')
     pengguna = filters.CharFilter(
         field_name='pengguna', lookup_expr='icontains')
     tanggal = filters.DateFromToRangeFilter(field_name='tanggal')
 
     class Meta:
         model = JurnalPagi
-        fields = ['pengguna', 'tanggal']
+        fields = ['judul', 'pengguna', 'tanggal']
 
 
 class JurnalSoreFilter(filters.FilterSet):
+    judul = filters.CharFilter(field_name='judul', lookup_expr='icontains')
     pengguna = filters.CharFilter(
         field_name='pengguna', lookup_expr='icontains')
     tanggal = filters.DateFromToRangeFilter(field_name='tanggal')
 
     class Meta:
         model = JurnalSore
-        fields = ['pengguna', 'tanggal']
+        fields = ['judul', 'pengguna', 'tanggal']
 
 
 class KonselorFilter(filters.FilterSet):

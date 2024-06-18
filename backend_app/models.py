@@ -32,6 +32,7 @@ class Pengguna(models.Model):
 
 
 class JurnalBase(models.Model):
+    judul = models.CharField(max_length=50)
     pengguna = models.ForeignKey(Pengguna, on_delete=models.CASCADE)
     tanggal = models.DateField(default=datetime.date.today)
 
