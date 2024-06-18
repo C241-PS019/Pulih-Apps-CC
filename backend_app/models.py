@@ -26,6 +26,7 @@ class Pengguna(models.Model):
     nim = models.CharField(max_length=20)
     universitas = models.CharField(max_length=50)
     telepon = models.CharField(max_length=20, null=True, blank=True)
+    foto = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.nama or self.akun.identifier
@@ -64,6 +65,7 @@ class Konselor(models.Model):
     nama_panggilan = models.CharField(max_length=20)
     mitra = models.CharField(max_length=50)
     telepon = models.CharField(max_length=20, null=True, blank=True)
+    foto = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.nama

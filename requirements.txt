@@ -48,6 +48,7 @@ opt-einsum==3.3.0
 optree==0.11.0
 packaging==24.0
 pandas==2.2.2
+pillow==10.3.0
 proto-plus==1.23.0
 protobuf==4.25.3
 pyasn1==0.6.0
@@ -64,13 +65,13 @@ rich==13.7.1
 rsa==4.9
 scikit-learn==1.5.0
 scipy==1.13.1
+setuptools==70.0.0
 six==1.16.0
 sqlparse==0.5.0
 tensorboard==2.16.2
 tensorboard-data-server==0.7.2
 tensorflow==2.16.1
 # tensorflow-intel==2.16.1
-tensorflow-io-gcs-filesystem==0.31.0
 termcolor==2.4.0
 threadpoolctl==3.5.0
 typing_extensions==4.12.0
@@ -78,4 +79,5 @@ tzdata==2024.1
 uritemplate==4.1.1
 urllib3==2.2.1
 Werkzeug==3.0.3
+wheel==0.43.0
 wrapt==1.16.0
