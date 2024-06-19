@@ -104,19 +104,18 @@ class KonselingFilter(filters.FilterSet):
         field_name='pengguna', lookup_expr='icontains')
     konselor = filters.CharFilter(
         field_name='konselor', lookup_expr='icontains')
+    jenis = filters.CharFilter(
+        field_name='jenis', lookup_expr='icontains')
+    tanggal = filters.CharFilter(field_name='tanggal', lookup_expr='icontains')
     waktu = filters.CharFilter(field_name='waktu', lookup_expr='icontains')
-    persetujuan = filters.CharFilter(
-        field_name='persetujuan', lookup_expr='icontains')
-    pertemuan = filters.CharFilter(
-        field_name='pertemuan', lookup_expr='icontains')
+    pesan = filters.CharFilter(
+        field_name='pesan', lookup_expr='icontains')
 
-    waktu_gte = filters.DateTimeFilter(field_name='waktu', lookup_expr='gte')
-    waktu_lte = filters.DateTimeFilter(field_name='waktu', lookup_expr='lte')
-    pertemuan_gte = filters.DateTimeFilter(
-        field_name='pertemuan', lookup_expr='gte')
-    pertemuan_lte = filters.DateTimeFilter(
-        field_name='pertemuan', lookup_expr='lte')
+    tanggal_gte = filters.DateFilter(field_name='tanggal', lookup_expr='gte')
+    tanggal_lte = filters.DateFilter(field_name='tanggal', lookup_expr='lte')
+    waktu_gte = filters.TimeFilter(field_name='waktu', lookup_expr='gte')
+    waktu_lte = filters.TimeFilter(field_name='waktu', lookup_expr='lte')
 
     class Meta:
         model = Konseling
-        fields = ['pengguna', 'konselor', 'waktu', 'persetujuan', 'pertemuan']
+        fields = ['pengguna', 'konselor', 'jenis', 'tanggal', 'waktu', 'pesan']
