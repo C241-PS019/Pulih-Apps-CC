@@ -106,16 +106,19 @@ class KonselingFilter(filters.FilterSet):
         field_name='konselor', lookup_expr='icontains')
     jenis = filters.CharFilter(
         field_name='jenis', lookup_expr='icontains')
+    tempat = filters.CharFilter(
+        field_name='tempat', lookup_expr='icontains')
     tanggal = filters.CharFilter(field_name='tanggal', lookup_expr='icontains')
     waktu = filters.CharFilter(field_name='waktu', lookup_expr='icontains')
     pesan = filters.CharFilter(
         field_name='pesan', lookup_expr='icontains')
-
     tanggal_gte = filters.DateFilter(field_name='tanggal', lookup_expr='gte')
     tanggal_lte = filters.DateFilter(field_name='tanggal', lookup_expr='lte')
     waktu_gte = filters.TimeFilter(field_name='waktu', lookup_expr='gte')
     waktu_lte = filters.TimeFilter(field_name='waktu', lookup_expr='lte')
+    status = filters.ChoiceFilter(
+        field_name='status', choices=Konseling.Status.choices)
 
     class Meta:
         model = Konseling
-        fields = ['pengguna', 'konselor', 'jenis', 'tanggal', 'waktu', 'pesan']
+        fields = ['pengguna', 'konselor', 'jenis', 'tempat', 'tanggal', 'waktu', 'pesan', 'status']

@@ -81,6 +81,7 @@ class Konseling(models.Model):
     pengguna = models.ForeignKey(Pengguna, on_delete=models.CASCADE)
     konselor = models.ForeignKey(Konselor, on_delete=models.CASCADE)
     jenis = models.CharField(max_length=50)
+    tempat = models.CharField(max_length=50)
     tanggal = models.DateField()
     waktu = models.TimeField()
     pesan = models.CharField(max_length=2000, null=True, blank=True)
