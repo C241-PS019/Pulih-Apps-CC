@@ -56,8 +56,8 @@ class PenggunaFilter(filters.FilterSet):
 
 class JurnalPagiFilter(filters.FilterSet):
     judul = filters.CharFilter(field_name='judul', lookup_expr='icontains')
-    pengguna = filters.CharFilter(
-        field_name='pengguna', lookup_expr='icontains')
+    pengguna_id = filters.CharFilter(
+        field_name='pengguna__id', lookup_expr='icontains')
     tanggal = filters.DateFromToRangeFilter(field_name='tanggal')
 
     class Meta:
@@ -67,8 +67,8 @@ class JurnalPagiFilter(filters.FilterSet):
 
 class JurnalSoreFilter(filters.FilterSet):
     judul = filters.CharFilter(field_name='judul', lookup_expr='icontains')
-    pengguna = filters.CharFilter(
-        field_name='pengguna', lookup_expr='icontains')
+    pengguna_id = filters.CharFilter(
+        field_name='pengguna__id', lookup_expr='icontains')
     tanggal = filters.DateFromToRangeFilter(field_name='tanggal')
 
     class Meta:
@@ -81,7 +81,6 @@ class KonselorFilter(filters.FilterSet):
     nama = filters.CharFilter(field_name='nama', lookup_expr='icontains')
     nama_panggilan = filters.CharFilter(
         field_name='nama_panggilan', lookup_expr='icontains')
-    nim = filters.CharFilter(field_name='nim', lookup_expr='icontains')
     mitra = filters.CharFilter(field_name='mitra', lookup_expr='icontains')
     telepon = filters.CharFilter(field_name='telepon', lookup_expr='icontains')
 
@@ -96,14 +95,14 @@ class KonselorFilter(filters.FilterSet):
 
     class Meta:
         model = Konselor
-        fields = ['akun', 'nama', 'nama_panggilan', 'nim', 'mitra', 'telepon']
+        fields = ['akun', 'nama', 'nama_panggilan', 'mitra', 'telepon']
 
 
 class KonselingFilter(filters.FilterSet):
-    pengguna = filters.CharFilter(
-        field_name='pengguna', lookup_expr='icontains')
-    konselor = filters.CharFilter(
-        field_name='konselor', lookup_expr='icontains')
+    pengguna_id = filters.CharFilter(
+        field_name='pengguna__id', lookup_expr='icontains')
+    konselor_id = filters.CharFilter(
+        field_name='konselor__id', lookup_expr='icontains')
     jenis = filters.CharFilter(
         field_name='jenis', lookup_expr='icontains')
     tempat = filters.CharFilter(
@@ -118,6 +117,8 @@ class KonselingFilter(filters.FilterSet):
     waktu_lte = filters.TimeFilter(field_name='waktu', lookup_expr='lte')
     status = filters.ChoiceFilter(
         field_name='status', choices=Konseling.Status.choices)
+    status_i = filters.CharFilter(
+        field_name='status', lookup_expr='icontains')
 
     class Meta:
         model = Konseling
