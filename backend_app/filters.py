@@ -30,7 +30,8 @@ class AkunFilter(filters.FilterSet):
 
 
 class PenggunaFilter(filters.FilterSet):
-    akun_id = filters.CharFilter(field_name='akun__user_uid', lookup_expr='icontains')
+    akun_id = filters.CharFilter(
+        field_name='akun__user_uid', lookup_expr='icontains')
     nama = filters.CharFilter(field_name='nama', lookup_expr='icontains')
     nama_panggilan = filters.CharFilter(
         field_name='nama_panggilan', lookup_expr='icontains')
@@ -77,7 +78,8 @@ class JurnalSoreFilter(filters.FilterSet):
 
 
 class KonselorFilter(filters.FilterSet):
-    akun_id = filters.CharFilter(field_name='akun__user_uid', lookup_expr='icontains')
+    akun_id = filters.CharFilter(
+        field_name='akun__user_uid', lookup_expr='icontains')
     nama = filters.CharFilter(field_name='nama', lookup_expr='icontains')
     nama_panggilan = filters.CharFilter(
         field_name='nama_panggilan', lookup_expr='icontains')
@@ -101,8 +103,12 @@ class KonselorFilter(filters.FilterSet):
 class KonselingFilter(filters.FilterSet):
     pengguna_id = filters.CharFilter(
         field_name='pengguna__id', lookup_expr='icontains')
+    pengguna_akun_id = filters.CharFilter(
+        field_name='pengguna__akun__user_uid', lookup_expr='icontains')
     konselor_id = filters.CharFilter(
         field_name='konselor__id', lookup_expr='icontains')
+    konselor_akun_id = filters.CharFilter(
+        field_name='konselor__akun__user_uid', lookup_expr='icontains')
     jenis = filters.CharFilter(
         field_name='jenis', lookup_expr='icontains')
     tempat = filters.CharFilter(
@@ -122,4 +128,5 @@ class KonselingFilter(filters.FilterSet):
 
     class Meta:
         model = Konseling
-        fields = ['pengguna', 'konselor', 'jenis', 'tempat', 'tanggal', 'waktu', 'pesan', 'status']
+        fields = ['pengguna', 'konselor', 'jenis',
+                  'tempat', 'tanggal', 'waktu', 'pesan', 'status']
