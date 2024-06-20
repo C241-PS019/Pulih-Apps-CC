@@ -61,8 +61,14 @@ class KonselingSerializer(serializers.ModelSerializer):
     konselor_id = serializers.PrimaryKeyRelatedField(
         source='konselor', queryset=Konselor.objects.all(), write_only=True)
     konselor = KonselorSerializer(read_only=True)
+    nama_pengguna = serializers.CharField(
+        source='pengguna.nama', read_only=True)
     nama_konselor = serializers.CharField(
         source='konselor.nama', read_only=True)
+    nama_panggilan_pengguna = serializers.CharField(
+        source='pengguna.nama_panggilan', read_only=True)
+    nama_panggilan_konselor = serializers.CharField(
+        source='konselor.nama_panggilan', read_only=True)
 
     class Meta:
         model = Konseling
