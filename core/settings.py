@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import pymysql
 from pathlib import Path
 import os
 from google.oauth2 import service_account
@@ -85,13 +86,15 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# import pymysql
-# pymysql.install_as_MySQLdb()
+pymysql.install_as_MySQLdb()
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': '34.50.73.236',
+        'USER': 'pulih',
+        'PASSWORD': 'lBhA=_l(Jnx$CcIC',
+        'NAME': 'pulih',
     }
 }
 
