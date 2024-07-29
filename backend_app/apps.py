@@ -17,3 +17,6 @@ class BackendAppConfig(AppConfig):
             firebase_admin.initialize_app(cred, {
                 'storageBucket': 'capstone-lite.appspot.com'
             })
+
+
+
